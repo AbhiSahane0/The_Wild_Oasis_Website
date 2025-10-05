@@ -1,10 +1,5 @@
 import supabase from "../../supabase";
 
-// type newUser = {
-//   name: string | null | undefined;
-//   email: string | null | undefined;
-// };
-
 export async function guestAlredyExists(email: string | null | undefined) {
   if (!email) return null;
 

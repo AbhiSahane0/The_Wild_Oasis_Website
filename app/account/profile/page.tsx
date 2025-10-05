@@ -3,6 +3,7 @@ import SelectCountry from "@/app/_components/selectCountry";
 import { updateGuest } from "@/app/_services/actions/actions";
 import { guestAlredyExists } from "@/app/_services/apis/guest/apiGuest";
 import { auth } from "@/app/_services/auth/auth";
+import Image from "next/image";
 import React from "react";
 
 async function page() {
@@ -46,11 +47,15 @@ async function page() {
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <label htmlFor="nationality">Where are you from?</label>
-            <img
-              src={guest.countryFlag}
-              alt="Country flag"
-              className="h-5 rounded-sm"
-            />
+            <div className="relative h-5 w-8">
+              <Image
+                src={guest.countryFlag}
+                alt="Country flag"
+                fill
+                className="rounded-sm object-cover"
+                sizes="32px"
+              />
+            </div>
           </div>
 
           <SelectCountry

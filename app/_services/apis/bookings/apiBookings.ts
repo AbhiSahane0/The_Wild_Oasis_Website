@@ -1,8 +1,5 @@
 import { eachDayOfInterval } from "date-fns";
 import supabase from "../../supabase";
-import { redirect } from "next/navigation";
-import { auth } from "../../auth/auth";
-// import { revalidatePath } from "next/cache";
 
 export async function getBookings(id: string | undefined) {
   const { data, error } = await supabase
@@ -31,10 +28,10 @@ export async function getBookingById(id: string | null) {
   return data;
 }
 
-export async function getBookedDatesByCabinId(cabinId) {
-  let today = new Date();
-  today.setUTCHours(0, 0, 0, 0);
-  today = today.toISOString();
+export async function getBookedDatesByCabinId(cabinId: string) {
+  const todayDate = new Date();
+  todayDate.setUTCHours(0, 0, 0, 0);
+  const today: string = todayDate.toISOString();
 
   // Getting all bookings
   const { data, error } = await supabase

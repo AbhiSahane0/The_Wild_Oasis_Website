@@ -4,8 +4,10 @@ import { differenceInDays } from "date-fns";
 import { useReservationContext } from "../_context/ReservationContext";
 import { createBooking } from "../_services/actions/actions";
 import { useFormStatus } from "react-dom";
+import Image from "next/image";
+import { ReservationFormProps } from "../_types/types";
 
-function ReservationForm({ cabin, user }) {
+function ReservationForm({ cabin, user }: ReservationFormProps) {
   const { range, resetRange } = useReservationContext();
   const { maxCapacity, regularPrice, discount, id } = cabin;
 
@@ -34,11 +36,13 @@ function ReservationForm({ cabin, user }) {
         <p>Logged in as</p>
 
         <div className="flex gap-4 items-center">
-          <img
+          <Image
             referrerPolicy="no-referrer"
-            className="h-8 rounded-full"
-            src={user.image}
-            alt={user.name}
+            className="h-8 w-8 rounded-full"
+            src={user.image || ""}
+            alt={user.name || "img"}
+            width={32}
+            height={32}
           />
           <p>{user.name}</p>
         </div>
