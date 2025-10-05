@@ -12,7 +12,7 @@ async function page() {
   const count = await getCabinCount();
 
   return (
-    <div className="md:grid grid-cols-5 gap-x-24 gap-y-32 text-lg items-center">
+    <div className="md:grid grid-cols-5 gap-x-24 gap-y-32 text-lg items-center m-2">
       <div className="col-span-3">
         <h1 className="text-4xl mb-10 text-accent-400 font-medium">
           Welcome to The Wild Oasis
