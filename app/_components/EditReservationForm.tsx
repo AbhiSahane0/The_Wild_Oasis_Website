@@ -3,15 +3,15 @@
 import React from "react";
 import { updateReservation } from "../_services/actions/actions";
 import { useFormStatus } from "react-dom";
+import { EditReservationFormProps } from "../_types/types";
+import Image from "next/image";
 
-function EditReservationForm({ booking }) {
+function EditReservationForm({ booking }: EditReservationFormProps) {
   console.log(booking);
   const {
-    created_at,
     id,
     startDate,
     endDate,
-    numNights,
     numGuests,
     cabinPrice,
     extrasPrice,
@@ -40,12 +40,18 @@ function EditReservationForm({ booking }) {
         {/* Cabin Preview */}
         <div className="space-y-2">
           <label>Cabin</label>
+
           <div className="flex items-center gap-4">
-            <img
-              src={image}
-              alt={`Cabin ${cabinId}`}
-              className="h-20 w-28 object-cover rounded-sm shadow-md"
-            />
+            <div className="relative h-20 w-28">
+              <Image
+                src={image}
+                alt={`Cabin ${cabinId}`}
+                fill
+                className="object-cover rounded-sm shadow-md"
+                sizes="(max-width: 768px) 100vw, 200px"
+                priority
+              />
+            </div>
             <span className="text-primary-200 font-medium">
               Cabin {cabinId}
             </span>

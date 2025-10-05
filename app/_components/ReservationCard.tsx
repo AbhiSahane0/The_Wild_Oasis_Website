@@ -4,13 +4,14 @@ import { format, formatDistance, isPast, isToday, parseISO } from "date-fns";
 import Image from "next/image";
 import DeleteReservation from "./DeleteReservation";
 import Link from "next/link";
+import { Booking } from "../_types/types";
 
 export const formatDistanceFromNow = (dateStr: string) =>
   formatDistance(parseISO(dateStr), new Date(), {
     addSuffix: true,
   }).replace("about ", "");
 
-async function ReservationCard({ booking }) {
+async function ReservationCard({ booking }: { booking: Booking }) {
   const {
     id,
     startDate,
@@ -19,10 +20,9 @@ async function ReservationCard({ booking }) {
     totalPrice,
     numGuests,
     created_at,
-    cabins: { cabinId, image },
+    cabins,
   } = booking;
-
-  console.log(cabinId);
+  const { cabinId, image } = cabins;
 
   return (
     <div className="flex flex-col sm:flex-row border border-primary-400 rounded-xl overflow-hidden">

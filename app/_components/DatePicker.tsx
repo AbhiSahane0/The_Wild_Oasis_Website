@@ -6,11 +6,12 @@ import {
   isSameDay,
   isWithinInterval,
 } from "date-fns";
-import { DayPicker } from "react-day-picker";
+import { DateRange, DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { useReservationContext } from "../_context/ReservationContext";
+import { DateSelectorProps } from "../_types/types";
 
-function isAlreadyBooked(range, datesArr: Date[]) {
+function isAlreadyBooked(range: DateRange | undefined, datesArr: Date[]) {
   if (!range?.from || !range?.to) return false;
 
   return datesArr.some((date) =>
@@ -18,7 +19,7 @@ function isAlreadyBooked(range, datesArr: Date[]) {
   );
 }
 
-function DateSelector({ settings, cabin, bookedDates }) {
+function DateSelector({ settings, cabin, bookedDates }: DateSelectorProps) {
   const { range, setRange, resetRange } = useReservationContext();
 
   // only keep the range if it’s valid and not overlapping booked dates
