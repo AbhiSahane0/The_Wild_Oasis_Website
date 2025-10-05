@@ -52,8 +52,8 @@ function SideBar() {
   return (
     <>
       {/* Desktop Sidebar */}
-      <div className="border-r border-primary-900 sm:flex flex-col hidden">
-        <h1 className="text-xl text-accent-500 hidden sm:block">Navigate</h1>
+      <div className="border-r border-primary-900 lg:flex flex-col hidden">
+        <h1 className="text-xl text-accent-500 ">Navigate</h1>
         <div className="mt-10 flex flex-col gap-8 text-lg">
           <ul className="flex flex-col gap-12">
             {SidebarItems.map(({ lable, icon, link }) => (

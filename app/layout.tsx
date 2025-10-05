@@ -32,7 +32,7 @@ export default async function RootLayout({
         <div>
           <Navbar image={session?.user?.image ?? ""} />
         </div>
-        <div className="flex-1 px-8 py-8">
+        <div className="lg:flex-1 lg:px-8 lg:py-8">
           <main className="max-w-7xl mx-auto">
             <ReservationProvider>{children}</ReservationProvider>
           </main>

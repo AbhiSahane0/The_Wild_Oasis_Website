@@ -112,5 +112,24 @@ export async function createBooking(bookingData: Booking, formData: FormData) {
 
   revalidatePath(`/cabins/${bookingData.cabinId}`);
 
-  // redirect("/cabins/thankyou");
+  redirect("/cabins/thankyou");
+}
+
+export async function submitQuery(formData: FormData) {
+  const name = formData.get("name");
+  const email = formData.get("email");
+  const query = formData.get("query") ? formData.get("query") : "No query";
+  const payload = {
+    name: name,
+    email: email,
+    query: query,
+  };
+
+  const { error } = await supabase
+    .from("user_queries")
+    .insert([payload])
+    .select();
+
+  if (error) throw new Error(error.message);
+  redirect("/account");
 }

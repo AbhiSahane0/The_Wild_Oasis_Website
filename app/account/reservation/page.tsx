@@ -11,13 +11,27 @@ async function page() {
   console.log(data);
 
   return (
-    <div className="px-4">
-      <p className="text-xl text-accent-500"> Your Reservations...</p>
-      <div className="mt-4 mb-4">
-        {data.map((booking) => (
-          <ReservationCard key={booking.id} booking={booking} />
-        ))}
-      </div>
+    <div className="px-4 sm:px-6 md:px-8 lg:px-12 py-4 sm:py-6 max-w-7xl mx-auto">
+      <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-accent-500 mb-4 sm:mb-6 font-semibold">
+        Your Reservations
+      </h1>
+
+      {data.length === 0 ? (
+        <div className="text-center py-12 sm:py-16">
+          <p className="text-base sm:text-lg text-primary-300 mb-4">
+            You don&apos;t have any reservations yet.
+          </p>
+          <p className="text-sm sm:text-base text-primary-400">
+            Book your first cabin to start your adventure!
+          </p>
+        </div>
+      ) : (
+        <div className="space-y-4 sm:space-y-6">
+          {data.map((booking) => (
+            <ReservationCard key={booking.id} booking={booking} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
