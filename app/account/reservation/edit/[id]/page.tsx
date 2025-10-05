@@ -2,7 +2,11 @@ import EditReservationForm from "@/app/_components/EditReservationForm";
 import { getBookingById } from "@/app/_services/apis/bookings/apiBookings";
 import React from "react";
 
-async function page({ params }) {
+interface PageParams {
+  id: string;
+}
+
+async function page({ params }: { params: PageParams }) {
   const { id } = await params;
 
   const data = await getBookingById(id);

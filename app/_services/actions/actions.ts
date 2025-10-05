@@ -5,7 +5,7 @@ import supabase from "../supabase";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getBookings } from "../apis/bookings/apiBookings";
-import { Booking } from "@/app/_types/types";
+import { CreteBooking } from "@/app/_types/types";
 
 export async function signInAction() {
   await signIn("google", { redirectTo: "/account" });
@@ -87,7 +87,10 @@ export async function updateReservation(formData: FormData) {
   redirect("/account/reservation");
 }
 
-export async function createBooking(bookingData: Booking, formData: FormData) {
+export async function createBooking(
+  bookingData: CreteBooking,
+  formData: FormData
+) {
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
 

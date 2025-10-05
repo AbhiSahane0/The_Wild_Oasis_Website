@@ -28,7 +28,13 @@ async function page() {
       ) : (
         <div className="space-y-4 sm:space-y-6">
           {data.map((booking) => (
-            <ReservationCard key={booking.id} booking={booking} />
+            <ReservationCard
+              key={booking.id}
+              booking={{
+                ...booking,
+                cabins: booking.cabins[0], // pick first element to match expected type
+              }}
+            />
           ))}
         </div>
       )}

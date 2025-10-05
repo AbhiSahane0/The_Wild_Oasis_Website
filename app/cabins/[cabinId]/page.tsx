@@ -1,13 +1,8 @@
 import ReadMore from "@/app/_components/ReadMore";
 import Reservation from "@/app/_components/Reservation";
 import Spinner from "@/app/_components/Spinner";
-import { createBooking } from "@/app/_services/actions/actions";
-import {
-  getBookedDatesByCabinId,
-  getSettings,
-} from "@/app/_services/apis/bookings/apiBookings";
+
 import { getCabinById, getCabins } from "@/app/_services/apis/cabin/apiCabins";
-import { auth } from "@/app/_services/auth/auth";
 import { Tag, Users } from "lucide-react";
 import Image from "next/image";
 import React, { Suspense } from "react";
@@ -28,7 +23,6 @@ export async function generateStaticParams() {
 }
 
 async function page({ params }: { params: { cabinId: string } }) {
-  const session = await auth();
   const { cabinId } = await params;
 
   const cabin: Cabin | null = await getCabinById(cabinId);
@@ -46,25 +40,10 @@ async function page({ params }: { params: { cabinId: string } }) {
     cabinId: id,
   } = cabin;
 
-  const [settings, bookedDates] = await Promise.all([
-    getSettings(),
-    getBookedDatesByCabinId(cabinId),
-  ]);
-
   const finalPrice =
     discount > 0
       ? Math.round((regularPrice * (100 - discount)) / 100)
       : regularPrice;
-
-  // Server action for creating booking
-  // async function createBookingAction(formData: FormData) {
-  //   "use server";
-
-  //   console.log("⏳ Creating booking...");
-  //   await createBooking(formData);
-  //   console.log("✅ Booking created successfully");
-  //   return { success: true };
-  // }
 
   return (
     <>

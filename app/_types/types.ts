@@ -1,3 +1,9 @@
+type CabinData = {
+  cabinId: string | number;
+  image: string;
+  maxCapacity: number;
+};
+
 export type EditReservationFormProps = {
   booking: {
     id: string;
@@ -9,11 +15,7 @@ export type EditReservationFormProps = {
     totalPrice: number;
     hasBreakfast: boolean;
     observations: string;
-    cabins: {
-      cabinId: string | number;
-      image: string;
-      maxCapacity: number;
-    };
+    cabins: CabinData[];
   };
 };
 
@@ -30,12 +32,20 @@ export type DateSelectorProps = {
 };
 
 export type Cabin = {
-  id: number | string;
+  id?: string;
   name?: string;
   regularPrice: number;
   discount: number;
   maxCapacity: number;
   image?: string;
+};
+
+export type CreteBooking = {
+  startDate: Date | undefined;
+  endDate: Date | undefined;
+  numNights: number;
+  cabinPrice: number;
+  cabinId: string | undefined;
 };
 
 export type Booking = {
@@ -46,12 +56,21 @@ export type Booking = {
   numNights: number;
   totalPrice: number;
   numGuests: number;
-  created_at: string;
   cabinPrice?: number;
   cabins: {
     cabinId: number | string;
     image: string;
   };
+};
+
+export type CreateBookingData = {
+  startDate: string; // ISO string
+  endDate: string;
+  numNights: number;
+  cabinPrice: number;
+  cabinId: string;
+  numGuests: number;
+  observations?: string;
 };
 
 type User = {
