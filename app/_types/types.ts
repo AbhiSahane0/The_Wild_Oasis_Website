@@ -3,7 +3,6 @@ type CabinData = {
   image: string;
   maxCapacity: number;
 };
-
 export type EditReservationFormProps = {
   booking: {
     id: string;
@@ -15,7 +14,11 @@ export type EditReservationFormProps = {
     totalPrice: number;
     hasBreakfast: boolean;
     observations: string;
-    cabins: CabinData[];
+    cabins: {
+      cabinId: string;
+      image: string;
+      maxCapacity: number;
+    };
   };
 };
 

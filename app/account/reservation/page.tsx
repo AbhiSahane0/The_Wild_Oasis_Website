@@ -8,8 +8,6 @@ async function page() {
 
   const data = await getBookings(session?.user?.guestId);
 
-  console.log(data, "data");
-
   return (
     <div className="px-4 sm:px-6 md:px-8 lg:px-12 py-4 sm:py-6 max-w-7xl mx-auto">
       <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-accent-500 mb-4 sm:mb-6 font-semibold">
