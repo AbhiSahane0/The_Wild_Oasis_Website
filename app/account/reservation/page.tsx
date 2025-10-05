@@ -8,7 +8,7 @@ async function page() {
 
   const data = await getBookings(session?.user?.guestId);
 
-  console.log(data);
+  console.log(data, "data");
 
   return (
     <div className="px-4 sm:px-6 md:px-8 lg:px-12 py-4 sm:py-6 max-w-7xl mx-auto">
@@ -27,15 +27,22 @@ async function page() {
         </div>
       ) : (
         <div className="space-y-4 sm:space-y-6">
-          {data.map((booking) => (
-            <ReservationCard
-              key={booking.id}
-              booking={{
-                ...booking,
-                cabins: booking.cabins[0], // pick first element to match expected type
-              }}
-            />
-          ))}
+          {data.map((booking) => {
+            // Ensure cabins is a single object
+            const formattedBooking = {
+              ...booking,
+              cabins: Array.isArray(booking.cabins)
+                ? booking.cabins[0]
+                : booking.cabins,
+            };
+
+            return (
+              <ReservationCard
+                key={formattedBooking.id}
+                booking={formattedBooking}
+              />
+            );
+          })}
         </div>
       )}
     </div>

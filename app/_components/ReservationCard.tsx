@@ -20,8 +20,9 @@ async function ReservationCard({ booking }: { booking: Booking }) {
     totalPrice,
     numGuests,
     created_at,
-    cabins: { cabinId, image },
+    cabins,
   } = booking;
+  const { cabinId, image } = cabins;
 
   return (
     <div className="flex flex-col sm:flex-row border border-primary-400 rounded-xl overflow-hidden">

@@ -57,8 +57,9 @@ export type Booking = {
   totalPrice: number;
   numGuests: number;
   cabinPrice?: number;
+  created_at: string;
   cabins: {
-    cabinId: number | string;
+    cabinId: string;
     image: string;
   };
 };
