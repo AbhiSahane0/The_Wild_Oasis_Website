@@ -11,11 +11,18 @@ async function page({ params }: { params: PageParams }) {
 
   const data = await getBookingById(id);
 
+  console.log(data, "data");
+
   return (
     <div>
       {/* <p className="text-xl text-accent-500 p-2">Edit your reservation</p> */}
       <div>
-        <EditReservationForm booking={data} />
+        <EditReservationForm
+          booking={{
+            ...data,
+            cabins: Array.isArray(data.cabins) ? data.cabins[0] : data.cabins,
+          }}
+        />
       </div>
     </div>
   );
